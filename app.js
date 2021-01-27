@@ -5,6 +5,9 @@ stock.addEventListener("change", (e) => {
   const reader = new FileReader();
   reader.readAsText(stock.files[0]);
   reader.onload = () => {
-    console.log(reader.result);
+    const lines = reader.result.split("\n").map((line) => {
+      return line.split(",");
+    });
+    console.log(lines);
   };
 });
