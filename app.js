@@ -31,5 +31,9 @@ stock.addEventListener("change", (e) => {
 
 getCloses.onclick = () => {
   const closes = allData.map((e) => e.c);
-  console.log(delta(closes).sort());
+  console.log(
+    delta(closes).sort(function (a, b) {
+      return a - b;
+    })
+  );
 };
