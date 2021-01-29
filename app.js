@@ -1,5 +1,10 @@
+import { drawGrid } from "./modules/drawgrid.js";
+import { plot, plot2 } from "./modules/plot.js";
+
 const stock = document.getElementById("stock");
 const getCloses = document.getElementById("get-closes");
+const canvas1 = document.getElementById("canvas-1");
+const c1 = canvas1.getContext("2d");
 const allData = [];
 
 const addDay = (arr) => {
