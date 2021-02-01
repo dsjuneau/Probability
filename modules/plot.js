@@ -1,3 +1,4 @@
+import { drawGrid } from "./drawgrid.js";
 export const plot = (pmf, c) => {
   let left = 100;
 
@@ -10,4 +11,5 @@ export const plot = (pmf, c) => {
     c.stroke();
     left++;
   }
+  drawGrid(c);
 };

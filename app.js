@@ -1,4 +1,3 @@
-import { drawGrid } from "./modules/drawgrid.js";
 import { plot } from "./modules/plot.js";
 
 const stock = document.getElementById("stock");
@@ -66,5 +65,3 @@ stock.addEventListener("change", (e) => {
 
 canvas1.width = 1200;
 canvas1.height = 800;
-
-drawGrid(c1);
