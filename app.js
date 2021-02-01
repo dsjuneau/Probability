@@ -52,11 +52,13 @@ stock.addEventListener("change", (e) => {
     const sortedNumSet = [...numSet].sort((a, b) => a - b);
     const max = sortedNumSet[cWidth - 1];
     const min = sortedNumSet[0];
+
     pmf.max = max;
     pmf.min = min;
     pmf.interval = interval;
     pmf.numSet = numSet;
     pmf.cWidth = cWidth;
+    pmf.dataPoints = rawPercent.length;
     console.log(pmf);
     plot(pmf, c1);
   };
