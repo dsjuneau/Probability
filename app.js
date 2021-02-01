@@ -6,6 +6,7 @@ const getCloses = document.getElementById("get-closes");
 const canvas1 = document.getElementById("canvas-1");
 const c1 = canvas1.getContext("2d");
 const allData = [];
+const cWidth = 1000;
 
 const addDay = (arr) => {
   return { d: arr[0], o: arr[1], h: arr[2], l: arr[3], c: arr[4], v: arr[5] };
@@ -23,7 +24,6 @@ const delta = (arr) => {
 };
 
 stock.addEventListener("change", (e) => {
-  console.log(stock.files);
   const reader = new FileReader();
   reader.readAsText(stock.files[0]);
   reader.onload = () => {
@@ -35,10 +35,21 @@ stock.addEventListener("change", (e) => {
 });
 
 getCloses.onclick = () => {
+  const numSet = [];
+  numSet.length = cWidth;
+  numSet.fill(0);
   const closes = allData.map((e) => e.c);
-  console.log(
-    delta(closes).sort(function (a, b) {
-      return a - b;
-    })
-  );
+  const rawPercent = delta(closes).sort(function (a, b) {
+    return a - b;
+  });
+  const interval = (rawPercent[rawPercent.length - 1] - rawPercent[0]) / cWidth;
+  rawPercent.forEach((rp) => {
+    const aIndex = Math.floor((rp - rawPercent[0]) / interval);
+    if (aIndex > cWidth - 1) {
+      numSet[cWidth - 1] = numSet[cWidth - 1] + 1;
+    } else {
+      numSet[aIndex] = numSet[aIndex] + 1;
+    }
+  });
+  console.log(numSet);
 };
