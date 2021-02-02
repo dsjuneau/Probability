@@ -2,7 +2,7 @@ export function drawGrid(c) {
   c.beginPath();
   c.moveTo(50, 50);
   c.lineTo(50, 751);
-  c.lineTo(1150, 751);
+  c.lineTo(1750, 751);
   c.strokeStyle = "black";
   c.stroke();
 

@@ -20,10 +20,11 @@ const histogram = (pmf, c) => {
   for (let i = 0; i < pmf.numSet.length; i++) {
     c.beginPath();
     c.moveTo(left, 750);
+    c.lineWidth = 2;
     c.lineTo(left, 750 - pmf.numSet[i] * factor);
     c.strokeStyle = "blue";
     c.stroke();
-    left++;
+    left = left + 2;
   }
   drawGrid(c);
 };

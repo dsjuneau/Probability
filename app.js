@@ -1,9 +1,10 @@
 import { plot } from "./modules/plot.js";
 
 const stock = document.getElementById("stock");
-
 const canvas1 = document.getElementById("canvas-1");
 const c1 = canvas1.getContext("2d");
+canvas1.width = 1800;
+canvas1.height = 800;
 const allData = [];
 const cWidth = 1000;
 const pmf = {};
@@ -58,10 +59,6 @@ stock.addEventListener("change", (e) => {
     pmf.numSet = numSet;
     pmf.cWidth = cWidth;
     pmf.dataPoints = rawPercent.length;
-    console.log(pmf);
-    plot(pmf, c1, "line");
+    plot(pmf, c1, "histogram");
   };
 });
-
-canvas1.width = 1200;
-canvas1.height = 800;
