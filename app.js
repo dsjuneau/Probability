@@ -59,7 +59,7 @@ stock.addEventListener("change", (e) => {
     pmf.cWidth = cWidth;
     pmf.dataPoints = rawPercent.length;
     console.log(pmf);
-    plot(pmf, c1);
+    plot(pmf, c1, "line");
   };
 });
 
