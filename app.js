@@ -6,7 +6,7 @@ const c1 = canvas1.getContext("2d");
 canvas1.width = 1800;
 canvas1.height = 800;
 const allData = [];
-const cWidth = 1000;
+const cWidth = canvas1.width - 100;
 const pmf = {};
 
 const addDay = (arr) => {
@@ -59,6 +59,8 @@ stock.addEventListener("change", (e) => {
     pmf.numSet = numSet;
     pmf.cWidth = cWidth;
     pmf.dataPoints = rawPercent.length;
+    console.log(pmf);
     plot(pmf, c1, "histogram");
+    console.log(pmf);
   };
 });
