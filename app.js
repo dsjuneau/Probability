@@ -13,8 +13,8 @@ canvas2.height = 800;
 
 // Global variables
 const allData = [];
-const cWidth = canvas1.width - 100;
 const pmf = {};
+let intervals = 1000;
 
 // Function that adds a day to the allData array of price objects
 const addDay = (arr) => {
@@ -51,18 +51,18 @@ stock.addEventListener("change", (e) => {
 
     //creates a pmf from the addData array
     const numSet = [];
-    numSet.length = cWidth;
+    numSet.length = intervals;
     numSet.fill(0);
     const closes = allData.map((e) => e.c);
     const rawPercent = delta(closes).sort(function (a, b) {
       return a - b;
     });
     const interval =
-      (rawPercent[rawPercent.length - 1] - rawPercent[0]) / cWidth;
+      (rawPercent[rawPercent.length - 1] - rawPercent[0]) / intervals;
     rawPercent.forEach((rp) => {
       const aIndex = Math.floor((rp - rawPercent[0]) / interval);
-      if (aIndex > cWidth - 1) {
-        numSet[cWidth - 1] = numSet[cWidth - 1] + 1;
+      if (aIndex > intervals - 1) {
+        numSet[intervals - 1] = numSet[intervals - 1] + 1;
       } else {
         numSet[aIndex] = numSet[aIndex] + 1;
       }
@@ -70,15 +70,18 @@ stock.addEventListener("change", (e) => {
 
     //finds the minimum and maximum count in the pmf
     const sortedNumSet = [...numSet].sort((a, b) => a - b);
-    const max = sortedNumSet[cWidth - 1];
+    const max = sortedNumSet[intervals - 1];
     const min = sortedNumSet[0];
+
+    //finds the total count of the pmf
+    const totalCount = {};
 
     //creates an object with data for the plotter to use
     pmf.max = max;
     pmf.min = min;
     pmf.interval = interval;
     pmf.numSet = numSet;
-    pmf.cWidth = cWidth;
+    pmf.intervals = intervals;
     pmf.dataPoints = rawPercent.length;
 
     //plots data
