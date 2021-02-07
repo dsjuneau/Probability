@@ -1,6 +1,5 @@
 import { drawGrid } from "./drawgrid.js";
 export const plot = (pmf, c, type) => {
-  removeOnePercent(pmf);
   switch (type) {
     case "histogram":
       histogram(pmf, c);
@@ -15,12 +14,13 @@ export const plot = (pmf, c, type) => {
 
 const histogram = (pmf, c) => {
   let left = 100;
-
+  console.log(pmf);
   const factor = 700 / pmf.max;
   for (let i = 0; i < pmf.numSet.length; i++) {
     c.beginPath();
     c.moveTo(left, 750);
     c.lineTo(left, 750 - pmf.numSet[i] * factor);
+
     c.strokeStyle = "blue";
     c.stroke();
     left++;
@@ -43,8 +43,9 @@ const line = (pmf, c) => {
   drawGrid(c);
 };
 
-const removeOnePercent = (pmf) => {
-  const onePercent = pmf.dataPoints * 0.01;
+/* This function removes "percent" the outliers
+const removeOnePercent = (pmf, percent) => {
+  const onePercent = pmf.dataPoints * percent;
 
   let count = 0;
   for (let i = 0; i < pmf.numSet.length; i++) {
@@ -69,3 +70,4 @@ const removeOnePercent = (pmf) => {
   }
   pmf.numSet.reverse();
 };
+*/
